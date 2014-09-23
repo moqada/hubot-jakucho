@@ -13,7 +13,6 @@
 resources = require './data/resources.json'
 key = 'jakucho'
 resetTime = process.env.HUBOT_JAKUCHO_RESET_TIME or 24 * 60 * 60 * 1000
-youtubeUrl = 'youtube'
 
 module.exports = (robot) ->
 
