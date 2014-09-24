@@ -16,9 +16,6 @@ resetTime = process.env.HUBOT_JAKUCHO_RESET_TIME or 24 * 60 * 60 * 1000
 
 module.exports = (robot) ->
 
-  robot.brain.on 'loaded', ->
-    robot.brain.data[key] ||= {statuses: {}}
-
   robot.hear /殺|死|fuck|ファック|ﾌｧｯｸ/i, (msg) ->
     data = syncCount msg.message.user
     if data.count > 5
