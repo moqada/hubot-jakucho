@@ -1,5 +1,11 @@
 # hubot-jakucho
-[![travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image] [![coveralls-image]][coveralls-url]
+
+[![Build Status][travis-image]][travis-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
+[![Dependency Status][daviddm-image]][daviddm-url]
+[![DevDependency Status][daviddm-dev-image]][daviddm-dev-url]
+[![Release Version][release-image]][release-url]
+[![License][license-image]][license-url]
 
 Reply jakucho (瀬戸内寂聴) image when you say SESSHO (殺生) words.
 
@@ -25,8 +31,14 @@ hubot>> @user1 http://i.imgur.com/0PdXItV.jpg
 ```
 
 [travis-url]: https://travis-ci.org/moqada/hubot-jakucho
-[travis-image]: http://img.shields.io/travis/moqada/hubot-jakucho/master.svg?style=flat
-[daviddm-url]: https://david-dm.org/moqada/hubot-jakucho.svg?theme=shields.io
-[daviddm-image]: http://img.shields.io/david/moqada/hubot-jakucho.svg?style=flat
-[coveralls-url]: https://coveralls.io/r/moqada/hubot-jakucho
-[coveralls-image]: http://img.shields.io/coveralls/moqada/hubot-jakucho/master.svg?style=flat
+[travis-image]: https://img.shields.io/travis/moqada/hubot-jakucho.svg?style=flat-square
+[daviddm-url]: https://david-dm.org/moqada/hubot-jakucho
+[daviddm-image]: https://img.shields.io/david/moqada/hubot-jakucho.svg?style=flat-square
+[daviddm-dev-url]: https://david-dm.org/moqada/hubot-jakucho#info=devDependencies
+[daviddm-dev-image]: https://img.shields.io/david/dev/moqada/hubot-jakucho.svg?style=flat-square
+[release-url]: https://github.com/moqada/hubot-jakucho/releases
+[release-image]: https://img.shields.io/github/release/moqada/hubot-jakucho.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/github/moqada/hubot-jakucho
+[coveralls-image]: https://img.shields.io/coveralls/moqada/hubot-jakucho.svg?style=flat-square
+[license-url]: https://github.com/moqada/hubot-jakucho/blob/master/LICENSE
+[license-image]: https://img.shields.io/github/license/moqada/hubot-jakucho.svg?style=flat-square
