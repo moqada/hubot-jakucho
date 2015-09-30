@@ -27,6 +27,7 @@
     "coveralls": "^2.10.1",
     "espower-coffee": "^1.0.0",
     "hubot": "^2.8.1",
+    "hubot-help": "^0.1.1",
     "hubot-mock-adapter": "^1.0.0",
     "istanbul": "^0.3.21",
     "mocha": "^2.3.3",
@@ -37,7 +38,7 @@
   "scripts": {
     "coveralls": "cat coverage/lcov.info | coveralls",
     "lint": "coffeelint src test",
-    "test": "rm -rf coverage && npm run lint && mocha test && istanbul report html lcov text-summary",
+    "test": "rm -rf coverage && npm run lint && mocha && istanbul report html lcov text-summary",
     "testing": "mocha --watch {src,test}/*.coffee"
   }
 }
