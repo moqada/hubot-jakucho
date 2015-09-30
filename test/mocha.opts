@@ -1,0 +1,4 @@
+--compilers coffee:coffee-script/register
+--require espower-coffee/guess
+--require test/coffee-coverage-loader.js
+--recursive
