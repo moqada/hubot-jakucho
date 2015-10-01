@@ -28,7 +28,6 @@
     "commitizen": "^1.0.5",
     "cz-conventional-changelog": "^1.1.2",
     "espower-coffee": "^1.0.0",
-    "ghooks": "^0.3.2",
     "hubot": "^2.8.1",
     "hubot-help": "^0.1.1",
     "hubot-mock-adapter": "^1.0.0",
@@ -47,11 +46,6 @@
     "pretest": "rm -rf coverage",
     "test": "npm run lint && mocha && npm run coverage:report && npm run coverage:check",
     "testing": "mocha --watch {src,test}/*.coffee"
-  },
-  "config": {
-    "ghooks": {
-      "pre-push": "npm test"
-    }
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
