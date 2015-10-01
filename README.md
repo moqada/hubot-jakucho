@@ -1,7 +1,7 @@
 # hubot-jakucho
 
 [![Build Status][travis-image]][travis-url]
-[![Coverage Status][coveralls-image]][coveralls-url]
+[![Coverage Status][codecov-image]][codecov-url]
 [![Dependency Status][daviddm-image]][daviddm-url]
 [![DevDependency Status][daviddm-dev-image]][daviddm-dev-url]
 [![Release Version][release-image]][release-url]
@@ -38,7 +38,7 @@ hubot>> @user1 http://i.imgur.com/0PdXItV.jpg
 [daviddm-dev-image]: https://img.shields.io/david/dev/moqada/hubot-jakucho.svg?style=flat-square
 [release-url]: https://github.com/moqada/hubot-jakucho/releases
 [release-image]: https://img.shields.io/github/release/moqada/hubot-jakucho.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/github/moqada/hubot-jakucho
-[coveralls-image]: https://img.shields.io/coveralls/moqada/hubot-jakucho.svg?style=flat-square
+[codecov-url]: https://codecov.io/github/moqada/hubot-jakucho
+[codecov-image]: https://img.shields.io/codecov/c/github/moqada/hubot-jakucho.svg?style=flat-square
 [license-url]: https://github.com/moqada/hubot-jakucho/blob/master/LICENSE
 [license-image]: https://img.shields.io/github/license/moqada/hubot-jakucho.svg?style=flat-square
