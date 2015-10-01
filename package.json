@@ -1,7 +1,7 @@
 {
   "name": "hubot-jakucho",
   "description": "Reply jakucho (瀬戸内寂聴) image when you say SESSHO (殺生) words",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "author": "moqada <moqada@gmail.com>",
   "bugs": {
     "url": "https://github.com/moqada/hubot-jakucho/issues"
