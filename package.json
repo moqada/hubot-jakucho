@@ -25,6 +25,8 @@
     "coffee-coverage": "^0.6.3",
     "coffeelint": "^1.12.1",
     "coffeelint-config-moqada": "^1.0.0",
+    "commitizen": "^1.0.5",
+    "cz-conventional-changelog": "^1.1.2",
     "espower-coffee": "^1.0.0",
     "ghooks": "^0.3.2",
     "hubot": "^2.8.1",
@@ -37,6 +39,7 @@
   },
   "main": "index.coffee",
   "scripts": {
+    "commit": "git-cz",
     "codecov": "cat coverage/lcov.info | codecov",
     "coverage:check": "istanbul check-coverage --functions 90 --statements 90 --branches 90 --lines 90",
     "coverage:report": "istanbul report html lcov text-summary",
@@ -49,5 +52,8 @@
     "ghooks": {
       "pre-push": "npm test"
     }
+  },
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog"
   }
 }
