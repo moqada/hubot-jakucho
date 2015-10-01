@@ -37,9 +37,11 @@
   "main": "index.coffee",
   "scripts": {
     "coveralls": "cat coverage/lcov.info | coveralls",
+    "coverage:check": "istanbul check-coverage --functions 90 --statements 90 --branches 90 --lines 90",
+    "coverage:report": "istanbul report html lcov text-summary",
     "lint": "coffeelint src test",
     "pretest": "rm -rf coverage",
-    "test": "npm run lint && mocha && istanbul report html lcov text-summary",
+    "test": "npm run lint && mocha && npm run coverage:report && npm run coverage:check",
     "testing": "mocha --watch {src,test}/*.coffee"
   }
 }
