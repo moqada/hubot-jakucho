@@ -16,7 +16,7 @@ See [`src/jakucho.coffee`](src/jakucho.coffee) for full documentation.
 
 In hubot project repo, run:
 
-`npm install moqada/hubot-jakucho --save`
+`npm install --save hubot-jakucho`
 
 Then add **hubot-jakucho** to your `external-scripts.json`:
 
