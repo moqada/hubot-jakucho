@@ -4,8 +4,8 @@ cache:
   directories:
     - node_modules
 node_js:
-  - "0.11"
-  - "0.10"
+  - 4
+  - stable
 before_script:
   - npm prune
 after_success:
