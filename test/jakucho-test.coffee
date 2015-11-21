@@ -1,112 +1,103 @@
 path = require 'path'
-{Robot, User, TextMessage} = require 'hubot'
+Helper = require 'hubot-test-helper'
 assert = require 'power-assert'
 sinon = require 'sinon'
 
 describe 'jakucho', ->
-  robot = null
-  user = null
-  adapter = null
-  beforeEach (done) ->
-    robot = new Robot null, 'mock-adapter', yes, 'hubot'
-    adapter = robot.adapter
-    user = robot.brain.userForId 'moqada', room: 'testroom'
-    robot.adapter.on 'connected', ->
-      robot.loadFile path.resolve('.', 'src'), 'jakucho.coffee'
-      hubotScripts = path.resolve 'node_modules', 'hubot-help', 'src'
-      robot.loadFile hubotScripts, 'help.coffee'
-      do waitForHelp = ->
-        if robot.helpCommands().length > 0
-          do done
-        else
-          setTimeout waitForHelp, 100
-    robot.run()
+  room = null
+  user = 'moqada'
+
+  beforeEach ->
+    hubotScripts = path.resolve 'node_modules', 'hubot-help', 'src'
+    helper = new Helper('./../src/jakucho.coffee')
+    room = helper.createRoom()
+    room.robot.loadFile hubotScripts, 'help.coffee'
 
   afterEach ->
-    robot.server.close()
-    robot.shutdown()
+    room.destroy()
 
   describe 'help', ->
     it 'should have 3', ->
-      assert robot.helpCommands().length is 3
+      assert room.robot.helpCommands().length is 3
 
-    it 'should parse help jakucho', (done) ->
-      adapter.on 'send', (envelope, strings) ->
-        assert strings[0] is '''
-        <SESSHO words> - Reply jakucho image.
-        '''
-        done()
-      adapter.receive new TextMessage user, 'hubot help jakucho'
+    context 'should parse help jakucho', ->
+      beforeEach ->
+        room.user.say user, 'hubot help jakucho'
+      it 'is expected', ->
+        assert.deepEqual room.messages, [
+          ['moqada', 'hubot help jakucho'],
+          ['hubot', '<SESSHO words> - Reply jakucho image.']
+        ]
 
   describe 'seppo reply', ->
-    it 'should reply image received sessho words', (done) ->
-      adapter.on 'reply', (envelope, strings) ->
-        assert envelope.message.user is user
-        assert strings[0].match /^http:\/\/i\.imgur\.com\//
-        done()
-      adapter.receive new TextMessage user, '殺す'
+    context '1 sessho words', ->
+      beforeEach ->
+        room.user.say user, '殺す'
+      it 'should reply image received sessho words', ->
+        assert room.messages.length is 2
+        response = room.messages[1]
+        assert response[0] is 'hubot'
+        assert response[1].match /^@moqada http:\/\/i\.imgur\.com\//
 
-    it 'should reply special image received sessho words 4 times', (done) ->
-      count = 0
-      adapter.on 'reply', (envelope, strings) ->
-        count += 1
-        assert envelope.message.user is user
-        if count is 4
-          assert strings[0].match /^仏の顔も三度まで!!! http:\/\/i\.imgur\.com\//
-          done()
-        else
-          assert strings[0].match /^http:\/\/i.imgur\.com\//
-      adapter.receive new TextMessage user, '殺す'
-      adapter.receive new TextMessage user, 'fuck'
-      adapter.receive new TextMessage user, 'ファック'
-      adapter.receive new TextMessage user, '死ね'
+    context '4 sessho words', ->
+      beforeEach ->
+        room.user.say user, '殺す'
+        room.user.say user, 'fuck'
+        room.user.say user, 'ファック'
+        room.user.say user, '死ね'
+      it 'room.say should reply special image received sessho words 4 times', ->
+        assert room.messages.length is 8
+        room.messages.slice(4, -1).forEach (res) ->
+          assert res[0] is 'hubot'
+          assert res[1].match /^@moqada http:\/\/i\.imgur\.com\//
+        lastMsg = room.messages.slice(-1)[0]
+        assert lastMsg[0], 'hubot'
+        assert lastMsg[1].match /^@moqada 仏の顔も三度まで!!! http:\/\/i\.imgur\.com\//
+    context '6 sessho words', ->
+      beforeEach ->
+        room.user.say user, '殺す'
+        room.user.say user, 'fuck'
+        room.user.say user, 'ファック'
+        room.user.say user, '死ね'
+        room.user.say user, '死ね'
+        room.user.say user, '死ね'
+      it 'should reply youtube movie received sessho words 6 times', ->
+        assert room.messages.length is 12
+        room.messages.slice(6, -3).forEach (res) ->
+          assert res[0] is 'hubot'
+          assert res[1].match /^@moqada http:\/\/i\.imgur\.com\//
+        room.messages.slice(9, -1).forEach (res) ->
+          assert res[0] is 'hubot'
+          assert res[1].match /^@moqada 仏の顔も三度まで!!! http:\/\/i\.imgur\.com\//
+        lastMsg = room.messages.slice(-1)[0]
+        assert lastMsg[0], 'hubot'
+        assert lastMsg[1].match /^@moqada https?:\/\/www.youtube.com/
 
-    it 'should reply youtube movie received sessho words 6 times', (done) ->
-      count = 0
-      adapter.on 'reply', (envelope, strings) ->
-        count += 1
-        if count is 6
-          assert strings[0].match /https?:\/\/www.youtube.com/
-          done()
-        else
-          assert not strings[0].match /https?:\/\/www.youtube.com/
-      adapter.receive new TextMessage user, '殺す'
-      adapter.receive new TextMessage user, 'fuck'
-      adapter.receive new TextMessage user, 'ファック'
-      adapter.receive new TextMessage user, '死ね'
-      adapter.receive new TextMessage user, '死ね'
-      adapter.receive new TextMessage user, '死ね'
-
-    it 'should through no sessho words', (done) ->
-      adapter.on 'reply', (envelope, strings) ->
-        assert not 'reply'
-        done()
-      adapter.on 'send', (envelope, strings) ->
-        assert not 'send'
-        done()
-      adapter.receive new TextMessage user, '平和'
-      setTimeout ->
-        done()
-      , 1900
+    context 'no sesho words', ->
+      beforeEach ->
+        room.user.say user, '平和'
+      it 'should through no sessho words', ->
+        assert.deepEqual room.messages, [
+          ['moqada', '平和']
+        ]
 
   describe 'seppo count', ->
     clock = null
     beforeEach ->
       clock = sinon.useFakeTimers()
+      room.user.say user, '殺す'
+      room.user.say user, 'fuck'
+      room.user.say user, 'ファック'
 
     afterEach ->
       clock.restore()
 
-    it 'should reset', (done) ->
-      count = 0
-      adapter.on 'reply', (envelope, strings) ->
-        count += 1
-        if count is 4
-          assert strings[0].match /^http:\/\/i\.imgur\.com\//
-          done()
-        else if count is 3
-          clock.tick 24 * 60 * 60 * 1000
-      adapter.receive new TextMessage user, '殺す'
-      adapter.receive new TextMessage user, 'fuck'
-      adapter.receive new TextMessage user, 'ファック'
-      adapter.receive new TextMessage user, '死ね'
+    context 'after 1 day', ->
+      beforeEach ->
+        clock.tick 24 * 60 * 60 * 1000
+        room.user.say user, '死ね'
+
+      it 'should reset', ->
+        lastMsg = room.messages.slice(-1)[0]
+        assert lastMsg[0] is 'hubot'
+        assert lastMsg[1].match /^@moqada http:\/\/i\.imgur\.com\//
