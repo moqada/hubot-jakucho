@@ -3,6 +3,7 @@
 #
 # Configuration:
 #   HUBOT_JAKUCHO_RESET_TIME - reset seppo count. (default: 1 day)
+#   HUBOT_JAKUCHO_EXCLUDE_ROOMS - not jakucho rooms.
 #
 # Commands:
 #   <SESSHO words> - Reply jakucho image.
@@ -13,10 +14,13 @@
 resources = require './data/resources.json'
 key = 'jakucho'
 resetTime = process.env.HUBOT_JAKUCHO_RESET_TIME or 24 * 60 * 60 * 1000
+excludeRooms = (process.env.HUBOT_JAKUCHO_EXCLUDE_ROOMS or '').split(',')
 
 module.exports = (robot) ->
 
   robot.hear /殺|死|fuck|ファック|ﾌｧｯｸ/i, (msg) ->
+    if msg.message.room in excludeRooms
+      return
     data = syncCount msg.message.user
     if data.count > 5
       msg.reply msg.random resources.movie
