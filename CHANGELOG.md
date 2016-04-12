@@ -1,3 +1,13 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/moqada/hubot-jakucho/compare/v1.0.0...v1.1.0) (2016-04-12)
+
+
+### Features
+
+* **hubot-jakucho:** Add HUBOT_JAKUCHO_EXCLUDE_ROOMS ([a367f3c](https://github.com/moqada/hubot-jakucho/commit/a367f3c))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/moqada/hubot-jakucho/compare/v0.2.0...v1.0.0) (2015-10-01)
 
