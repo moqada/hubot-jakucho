@@ -21,7 +21,7 @@
     "cz-conventional-changelog": "^1.1.2",
     "espower-coffee": "^1.0.0",
     "hubot": "^2.19.0",
-    "hubot-help": "^0.1.1",
+    "hubot-help": "^0.2.0",
     "hubot-test-helper": "^1.2.0",
     "istanbul": "^0.4.1",
     "mocha": "^2.3.3",
