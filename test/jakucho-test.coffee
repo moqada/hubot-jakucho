@@ -26,7 +26,7 @@ describe 'jakucho', ->
       it 'is expected', ->
         assert.deepEqual room.messages, [
           ['moqada', 'hubot help jakucho'],
-          ['hubot', '<SESSHO words> - Reply jakucho image.']
+          ['hubot', '@moqada <SESSHO words> - Reply jakucho image.']
         ]
 
   describe 'seppo reply', ->
