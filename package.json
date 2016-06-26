@@ -13,7 +13,7 @@
     "coffee-script": "^1.7.0"
   },
   "devDependencies": {
-    "codecov.io": "^0.1.6",
+    "codecov": "^1.0.1",
     "coffee-coverage": "^1.0.1",
     "coffeelint": "^1.12.1",
     "coffeelint-config-moqada": "^1.0.0",
@@ -42,7 +42,7 @@
     "url": "https://github.com/moqada/hubot-jakucho.git"
   },
   "scripts": {
-    "codecov": "cat coverage/lcov.info | codecov",
+    "codecov": "codecov",
     "commit": "git-cz",
     "coverage:check": "istanbul check-coverage --functions 70 --statements 70 --branches 70 --lines 70",
     "coverage:report": "istanbul report html lcov text-summary",
