@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "codecov": "^1.0.1",
-    "coffee-coverage": "^1.0.1",
+    "coffee-coverage": "^2.0.0",
     "coffeelint": "^1.12.1",
     "coffeelint-config-moqada": "^1.0.0",
     "commitizen": "^2.4.4",
